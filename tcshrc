@@ -1,0 +1,24 @@
+set path = (/sbin /bin /usr/sbin /usr/bin /usr/games /usr/local/sbin /usr/local/bin $HOME/bin $HOME/work /usr/local/go/bin)
+
+set prompt = "[%N@%m:%~]%# "
+
+# history
+
+set history = 100
+set savehist = 100
+
+# autocomplete
+set autolist
+set complete = enhance
+set autoexpand
+set correct = cmd
+set correct = all
+
+alias vim 'nvim'
+alias ls 'ls --color=always'
+alias l 'ls -l'
+alias mv 'mv -i'
+alias cp 'cp -i'
+alias rm 'rm -i'
+
+setenv GREP_OPTIONS --color=auto
