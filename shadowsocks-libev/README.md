@@ -3,7 +3,7 @@
 ## 安装
 
 ```sh
-pkg install -y shadowsocks-live
+pkg install -y shadowsocks-libev
 ```
 ## 插件
 
@@ -12,8 +12,20 @@ pkg install -y shadowsocks-live
 编译
 
 ```
-CGO_ENABLED=0 gox -ldflags "-X main.version=${v}" -os="$os" -arch="$arch" -osarch="$osarch" -output="$output"
+git clone https://github.com/cbeuw/Cloak.git
+cd Cloak
+# 取出最新的版本号
+git tag | tail -1
+go get ./...
+go build -ldflags "-X main.version=$(git tag | tail -1)" ./cmd/ck-server
 ```
+
+安装
+
+```
+cp ck-server /usr/local/bin/
+```
+
 
 rc.d
 
@@ -42,7 +54,7 @@ logfile="/var/log/${name}.log"
 procname=/usr/local/bin/ck-server
 configfile=/usr/local/etc/cloak/ck-server.json
 command="/usr/sbin/daemon"
-command_args="-u nobody -o ${logfile} -t ${name} ${procname} -c ${configfile}"
+command_args="-o ${logfile} -t ${name} ${procname} -c ${configfile}"
 
 run_rc_command "$1"
 EOF
@@ -60,12 +72,12 @@ cat > /usr/local/etc/cloak/ck-server.json < EOF
     "ProxyBook":{
     "shadowsocks":["tcp","127.0.0.1:12802"]
     },
-    "BindAddr":[":443",":80"],
+    "BindAddr":[":8443"],
     "BypassUID":[],
     "RedirAddr":"www.bing.com",
     "PrivateKey":"QMII9Z1ZA/Iye+pM8qbP/R6/2VgcQFADZBY1hYvAAXo=",
     "AdminUID":"1U2UndGrJiviGvH4gHJL8w==",
-    "DatabasePath":" /usr/local/etc/cloak/userinfo.db"
+    "DatabasePath":"userinfo.db"
 }
 EOF
 ```

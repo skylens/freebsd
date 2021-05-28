@@ -125,9 +125,9 @@ EOF
 
 [strongswan](strongswan/README.md)
 
-### shadowsocks-libve
+### shadowsocks-libev
 
-[shadowsocks-libve](shadowsocks-libve/README.md)
+[shadowsocks-libev](shadowsocks-libev/README.md)
 
 ## 更新
 
