@@ -9,6 +9,12 @@ pkg install -y shadowsocks-live
 
 ### cloak
 
+编译
+
+```
+CGO_ENABLED=0 gox -ldflags "-X main.version=${v}" -os="$os" -arch="$arch" -osarch="$osarch" -output="$output"
+```
+
 rc.d
 
 ```
