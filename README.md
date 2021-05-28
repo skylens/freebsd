@@ -76,7 +76,22 @@ pkg upgrade
 
 ## 用户
 
+### 新增
+
 ```sh
+pw useradd -m -s /bin/sh -n skylens
+```
+
+### 删除
+
+```sh
+pw userdel -r -n skylens
+```
+
+### sudo
+
+```sh
+pkg install -y sudo
 pw groupmod wheel -m skylens
 ```
 
@@ -96,7 +111,7 @@ pkg remove `cat vimdeps.txt`
 pkg install -y pkg wget git nano aria2 tmux neovim
 ```
 
-neovim 配置
+### neovim 配置
 
 ```sh
 mkdir -p ~/.config/nvim
@@ -105,6 +120,10 @@ set paste
 colorscheme delek
 EOF
 ```
+
+### strongswan
+
+[strongswan](strongswan/README.md)
 
 ## 更新
 
