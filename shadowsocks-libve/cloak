@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# PROVIDE: cloak
+# REQUIRE: DAEMON NETWORKING
+# KEYWORD: shutdown
+
+# Add the following lines to /etc/rc.conf to enable cloak:
+# cloak_enable : set to "YES" to enable the daemon, default is "NO"
+
+. /etc/rc.subr
+
+name=cloak
+rcvar=cloak_enable
+
+load_rc_config $name
+
+cloak_enable=${cloak_enable:-"NO"}
+
+logfile="/var/log/${name}.log"
+
+procname=/usr/local/bin/ck-server
+configfile=/usr/local/etc/cloak/ck-server.json
+command="/usr/sbin/daemon"
+command_args="-u nobody -o ${logfile} -t ${name} ${procname} -c ${configfile}"
+
+run_rc_command "$1"
