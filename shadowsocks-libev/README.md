@@ -17,15 +17,16 @@ cd Cloak
 # 取出最新的版本号
 git tag | tail -1
 go get ./...
-go build -ldflags "-X main.version=$(git tag | tail -1)" ./cmd/ck-server
+# go build -ldflags "-X main.version=$(git tag | tail -1)" ./cmd/ck-server
+env CGO_ENABLED=0 GOOS=freebsd GOARCH=amd64 go build -trimpath -ldflags " -s -w" -o ./ck-server ./cmd/ck-server
 ```
 
 安装
 
 ```
 cp ck-server /usr/local/bin/
+chown 1000:1000 /usr/local/bin/ck-server
 ```
-
 
 rc.d
 
@@ -54,7 +55,7 @@ logfile="/var/log/${name}.log"
 procname=/usr/local/bin/ck-server
 configfile=/usr/local/etc/cloak/ck-server.json
 command="/usr/sbin/daemon"
-command_args="-o ${logfile} -t ${name} ${procname} -c ${configfile}"
+command_args="-u nobody -o ${logfile} -t ${name} ${procname} -c ${configfile}"
 
 run_rc_command "$1"
 EOF

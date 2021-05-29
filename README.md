@@ -74,6 +74,12 @@ pkg update -f
 pkg upgrade
 ```
 
+### ports
+
+```
+
+```
+
 ## 用户
 
 ### 新增
