@@ -77,7 +77,9 @@ pkg upgrade
 ### ports
 
 ```
-
+portsnap extract
+portsnap fetch
+portsnap update
 ```
 
 ## 用户
@@ -121,6 +123,7 @@ pkg install -y pkg wget git nano aria2 tmux neovim
 
 ```sh
 mkdir -p ~/.config/nvim
+cd ~/.config/nvim
 cat > init.vim << EOF
 set paste
 colorscheme delek

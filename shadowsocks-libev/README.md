@@ -63,6 +63,12 @@ EOF
 chmod 0755 /usr/local/etc/rc.d/cloak
 ```
 
+生成必要的id和keys
+
+```
+ck-server -u
+ck-server -k && echo "PublicKey and PrivateKey"
+```
 
 ck-server.json
 
@@ -71,14 +77,22 @@ mkdir /usr/local/etc/cloak/
 cat > /usr/local/etc/cloak/ck-server.json < EOF
 {
     "ProxyBook":{
-    "shadowsocks":["tcp","127.0.0.1:12802"]
+    "shadowsocks":["tcp","127.0.0.1:8880"]
     },
     "BindAddr":[":8443"],
     "BypassUID":[],
     "RedirAddr":"www.bing.com",
-    "PrivateKey":"QMII9Z1ZA/Iye+pM8qbP/R6/2VgcQFADZBY1hYvAAXo=",
-    "AdminUID":"1U2UndGrJiviGvH4gHJL8w==",
+    "PrivateKey":"kPI6r8n7IiRTMhlXRzrGP0+TwmOJLdutLpETFjD7I3A=",
+    "AdminUID":"RdKsWXAZX0hT1Ou+PWVWkA==",
     "DatabasePath":"userinfo.db"
 }
 EOF
 ```
+
+客户端设置
+
+```
+Transport=direct;ProxyMethod=shadowsocks;EncryptionMethod=plain;UID=RdKsWXAZX0hT1Ou+PWVWkA==;PublicKey=y0lK3+F7Hi7Tn7oYjR+Kai1eb06SQaW6T1Gt8spFoQ8=;ServerName=www.bing.com;NumConn=4;BrowserSig=chrome;StreamTimeout=300
+```
+
+### gost
