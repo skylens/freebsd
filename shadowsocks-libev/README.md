@@ -84,9 +84,16 @@ cat > /usr/local/etc/cloak/ck-server.json < EOF
     "RedirAddr":"www.bing.com",
     "PrivateKey":"kPI6r8n7IiRTMhlXRzrGP0+TwmOJLdutLpETFjD7I3A=",
     "AdminUID":"RdKsWXAZX0hT1Ou+PWVWkA==",
-    "DatabasePath":"userinfo.db"
+    "DatabasePath":"/usr/local/etc/cloak/userinfo.db"
 }
 EOF
+```
+
+bug（需要给生成的 userinfo.db 修改一下所属用户，不然 service cloak start 会失败）
+
+```
+ck-server -c /usr/local/etc/cloak/ck-server.json
+chown nobody /usr/local/etc/cloak/userinfo.db
 ```
 
 客户端设置
