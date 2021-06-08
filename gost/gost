@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# PROVIDE: gost
+# REQUIRE: DAEMON NETWORKING
+# KEYWORD: shutdown
+
+# Add the following lines to /etc/rc.conf to enable gost:
+# gost_enable : set to "YES" to enable the daemon, default is "NO"
+
+. /etc/rc.subr
+
+name=gost
+rcvar=gost_enable
+
+load_rc_config $name
+
+gost_enable=${gost_enable:-"NO"}
+
+logfile="/var/log/${name}.log"
+
+procname=/usr/local/bin/gost
+configfile=/usr/local/etc/gost/gost.json
+command="/usr/sbin/daemon"
+command_args="-u nobody -o ${logfile} -t ${name} ${procname} -c ${configfile}"
+
+run_rc_command "$1"

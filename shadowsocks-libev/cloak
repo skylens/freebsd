@@ -21,6 +21,6 @@ logfile="/var/log/${name}.log"
 procname=/usr/local/bin/ck-server
 configfile=/usr/local/etc/cloak/ck-server.json
 command="/usr/sbin/daemon"
-command_args="-o ${logfile} -t ${name} ${procname} -c ${configfile}"
+command_args="-u nobody -o ${logfile} -t ${name} ${procname} -c ${configfile}"
 
 run_rc_command "$1"
