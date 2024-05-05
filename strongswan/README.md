@@ -115,7 +115,7 @@ connections {
                 mobike=yes
                 local {
                         id=vpn.domain.com
-                        certs=cert.pem
+                        certs=fullchain.pem
                 }
                 remote {
                         auth=eap-mschapv2
